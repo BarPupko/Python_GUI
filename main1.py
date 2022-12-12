@@ -6,6 +6,7 @@ class MyGUI:
     def __init__(self):
         self.root = tk.Tk()
 
+        # self.menubar = tk.menu(self.root)
         # if it's checked we will get a popup
 
         self.label = tk.Label(self.root, text="Your Message", font=('Arial', 18))
@@ -24,6 +25,7 @@ class MyGUI:
         self.button = tk.Button(self.root, text="Show Message", font=('Arial', 18), command=self.show_message)
         self.button.pack(padx=10, pady=10)
 
+        self.root.protocol("WM_DELETE_WINDOW", self)  # when we close the button we call this function
         self.root.mainloop()
 
     def show_message(self):
@@ -35,7 +37,10 @@ class MyGUI:
     def shortcut(self, event):
 
         if event.state == 12 and event.keysym == "Return":
-            print("hello")
+            self.show_message()
+
+    def on_closing(self):
+        print("Hello World")
 
         # print(event.state)
 
